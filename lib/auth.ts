@@ -57,5 +57,5 @@ export const SESSION_COOKIE_OPTIONS = {
     sameSite: 'strict' as const,
     path: '/',
     maxAge: 86400, // 24 h
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
 };
