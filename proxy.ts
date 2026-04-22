@@ -3,8 +3,19 @@ import { getSessionFromRequest } from './lib/auth';
 
 const PUBLIC_PATHS = ['/login', '/register', '/api/auth/login', '/api/auth/logout', '/api/auth/register'];
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Handle CORS preflight requests
+  if (request.method === 'OPTIONS') {
+    return NextResponse.json({}, { headers: corsHeaders });
+  }
 
   // Allow static assets
   if (
@@ -40,7 +51,11 @@ export async function proxy(request: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+  return response;
 }
 
 export const config = {
