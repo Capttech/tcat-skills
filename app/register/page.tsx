@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faSpinner, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -53,7 +52,7 @@ export default function RegisterPage() {
             <div className="w-full max-w-md">
                 <div className="mb-8 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 border border-accent/30 mb-4">
-                        <Image src="/logo.svg" alt="Skills Bowl logo" width={40} height={40} priority />
+                        <FontAwesomeIcon icon={faBolt} className="text-green-400" style={{ width: 36, height: 36 }} />
                     </div>
                     <h1 className="text-3xl font-bold text-white glow-text">Skills Bowl</h1>
                     <p className="mt-2 text-zinc-500 text-sm">Create a new account</p>

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,6 +9,7 @@ import {
     faRightFromBracket,
     faBars,
     faTimes,
+    faBolt,
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import type { SessionPayload } from '@/lib/auth';
@@ -43,7 +43,7 @@ export default function Navbar({ user }: NavbarProps) {
                 <div className="flex h-14 items-center justify-between">
                     {/* Logo */}
                     <Link href="/quiz" className="flex items-center gap-2 font-mono font-bold text-accent text-lg glow-text">
-                        <Image src="/logo.svg" alt="Skills Bowl logo" width={24} height={24} />
+                        <FontAwesomeIcon icon={faBolt} className="text-green-400" style={{ width: 20, height: 20 }} />
                         Skills Bowl
                     </Link>
 
